@@ -89,7 +89,19 @@ var finances = [
 console.log("Total number of months:", finances.length);
 
 var total = 0;
+var numbers = []
+var dateWithMax = "";
+var dateWithMix = "";
 for(var i = 0; i < finances.length; i++){
   total += finances[i][1];
-  console.log(total)
+  numbers.push(finances[i][1])
+  var max = Math.max(...numbers);
+  var min = Math.min(...numbers);
+  if (finances[i][1]===max){
+    dateWithMax = finances[i][0]
+    console.log("hello", finances[i][0])
+  }
+  
 }
+
+console.log(total, max, min, dateWithMax)
