@@ -86,22 +86,37 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
-console.log("Total number of months:", finances.length);
 
+
+var totalMonths = finances.length
+var difference = []
 var total = 0;
 var numbers = []
 var dateWithMax = "";
-var dateWithMix = "";
+var dateWithMin = "";
+var totalDiff = 0;
 for(var i = 0; i < finances.length; i++){
   total += finances[i][1];
-  numbers.push(finances[i][1])
+  numbers.push(finances[i][1]);
+  
   var max = Math.max(...numbers);
   var min = Math.min(...numbers);
   if (finances[i][1]===max){
-    dateWithMax = finances[i][0]
+    dateWithMax = finances[i][0];
     console.log("hello", finances[i][0])
   }
-  
+  if (finances[i][1] === min) {
+    dateWithMin = finances[i][0];
+    console.log("hello", finances[i][0]);
+  }
 }
-
-console.log(total, max, min, dateWithMax)
+for (var i = 0; i < numbers.length; i++){
+  difference.push(numbers[i+1] - numbers[i])
+}
+difference.pop()
+for (var i = 0; i < difference.length; i++){
+  console.log(difference[i])
+  totalDiff += difference[i]
+}
+console.log(totalDiff/totalMonths - 1)
+console.log(totalMonths, total, max, min, dateWithMax, dateWithMin, difference);
