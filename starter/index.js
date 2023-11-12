@@ -112,11 +112,17 @@ for(var i = 0; i < finances.length; i++){
 }
 for (var i = 0; i < numbers.length; i++){
   difference.push(numbers[i+1] - numbers[i])
+  console.log("show waht numbers: " + numbers[i+1], numbers[i])
+
+  
 }
 difference.pop()
+difference.shift()
+var aMax = Math.max(...difference);
+var aMin = Math.min(...difference);
 for (var i = 0; i < difference.length; i++){
   console.log(difference[i])
   totalDiff += difference[i]
 }
-console.log(totalDiff/totalMonths - 1)
-console.log(totalMonths, total, max, min, dateWithMax, dateWithMin, difference);
+console.log(totalDiff/totalMonths-1, aMax, aMin)
+console.log(totalMonths, total, max, min, dateWithMax, dateWithMin, difference.length);
