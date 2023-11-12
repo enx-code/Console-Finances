@@ -108,17 +108,14 @@ difference.shift();
 var aMax = Math.max(...difference);
 var aMin = Math.min(...difference);
 for (var i = 0; i < difference.length; i++){
-  console.log(difference[i]);
   totalDiff += difference[i];
 
   
   if (difference[i-1] === aMax) {
     dateWithMax = finances[i][0];
-    console.log("hello", finances[i][0]);
   }
   if (difference[i-1] === aMin) {
     dateWithMin = finances[i][0];
-    console.log("hello", finances[i][0]);
   }
 }
 avChange = totalDiff / (totalMonths - 1);
