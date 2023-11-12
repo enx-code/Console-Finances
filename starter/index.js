@@ -95,34 +95,39 @@ var numbers = []
 var dateWithMax = "";
 var dateWithMin = "";
 var totalDiff = 0;
+var avChange = 0
 for(var i = 0; i < finances.length; i++){
   total += finances[i][1];
   numbers.push(finances[i][1]);
   
-  var max = Math.max(...numbers);
-  var min = Math.min(...numbers);
-  if (finances[i][1]===max){
+}
+for (var i = 0; i < numbers.length; i++){
+  difference.push(numbers[i] - numbers[i-1]);
+}
+difference.shift();
+var aMax = Math.max(...difference);
+var aMin = Math.min(...difference);
+for (var i = 0; i < difference.length; i++){
+  console.log(difference[i]);
+  totalDiff += difference[i];
+
+  
+  if (difference[i-1] === aMax) {
     dateWithMax = finances[i][0];
-    console.log("hello", finances[i][0])
+    console.log("hello", finances[i][0]);
   }
-  if (finances[i][1] === min) {
+  if (difference[i-1] === aMin) {
     dateWithMin = finances[i][0];
     console.log("hello", finances[i][0]);
   }
 }
-for (var i = 0; i < numbers.length; i++){
-  difference.push(numbers[i+1] - numbers[i])
-  console.log("show waht numbers: " + numbers[i+1], numbers[i])
+avChange = totalDiff / (totalMonths - 1);
 
-  
-}
-difference.pop()
-difference.shift()
-var aMax = Math.max(...difference);
-var aMin = Math.min(...difference);
-for (var i = 0; i < difference.length; i++){
-  console.log(difference[i])
-  totalDiff += difference[i]
-}
-console.log(totalDiff/totalMonths-1, aMax, aMin)
-console.log(totalMonths, total, max, min, dateWithMax, dateWithMin, difference.length);
+
+console.log("Financial Analysis");
+console.log("------------------");
+console.log(`Total Months: ${totalMonths}`);
+console.log(`Total: $${total}`);
+console.log(`Average Change: $${avChange.toFixed(2)}`);
+console.log(`Greatest Increase in Profits/Losses: ${dateWithMax} ($${aMax})`);
+console.log(`Greatest Decrease in Profits/Losses: ${dateWithMin} ($${aMin})`);
